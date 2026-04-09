@@ -1,0 +1,5 @@
+{
+  "name": "HealthGuard AI",
+  "description": "AI-powered diagnostic and outbreak monitoring tool for Community Health Volunteers. Features symptom-based diagnostics, malnutrition detection via computer vision, and real-time outbreak alerts.",
+  "requestFramePermissions": ["camera"]
+}

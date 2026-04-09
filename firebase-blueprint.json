@@ -1,0 +1,59 @@
+{
+  "entities": {
+    "Patient": {
+      "title": "Patient",
+      "description": "Information about a patient and their diagnosis",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string", "description": "Patient's full name" },
+        "age": { "type": "number", "description": "Patient's age in years" },
+        "gender": { "type": "string", "enum": ["male", "female", "other"] },
+        "location": { "type": "string", "description": "Patient's village or district" },
+        "symptoms": { "type": "string", "description": "Recorded symptoms" },
+        "diagnosis": { "type": "string", "description": "AI-generated diagnosis" },
+        "malnutritionStatus": { "type": "string", "description": "AI-detected malnutrition status" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "volunteerId": { "type": "string", "description": "ID of the volunteer who recorded the data" }
+      },
+      "required": ["name", "age", "location", "symptoms", "timestamp", "volunteerId"]
+    },
+    "Alert": {
+      "title": "Outbreak Alert",
+      "description": "Real-time alert for potential disease outbreaks",
+      "type": "object",
+      "properties": {
+        "type": { "type": "string", "description": "Disease type (e.g., Malaria, Pneumonia)" },
+        "location": { "type": "string", "description": "Affected district or area" },
+        "severity": { "type": "string", "enum": ["low", "medium", "high", "critical"] },
+        "description": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["type", "location", "severity", "timestamp"]
+    },
+    "Volunteer": {
+      "title": "Volunteer",
+      "description": "Community Health Volunteer profile",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "district": { "type": "string" }
+      },
+      "required": ["name", "email", "district"]
+    }
+  },
+  "firestore": {
+    "/patients/{patientId}": {
+      "schema": "Patient",
+      "description": "Collection of patient diagnostic records"
+    },
+    "/alerts/{alertId}": {
+      "schema": "Alert",
+      "description": "Collection of outbreak alerts"
+    },
+    "/volunteers/{volunteerId}": {
+      "schema": "Volunteer",
+      "description": "Volunteer profiles"
+    }
+  }
+}
